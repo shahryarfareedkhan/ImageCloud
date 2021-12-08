@@ -1,6 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
+import Signup from "../views/Signup.vue";
+import Main from "../views/Main.vue";
+import Forget from "../views/Forget.vue";
+import Update from "../views/Update.vue";
+import Recover from "../views/Recover.vue";
+import Navbar from "../views/Navbar.vue";
+import Checksign from "../views/Checksign.vue";
+import Gallery from "../views/Gallery.vue";
+import Passwordupdate from "../views/Passwordupdate.vue";
+
 
 Vue.use(VueRouter);
 
@@ -10,6 +21,57 @@ const routes = [
     name: "Home",
     component: Home,
   },
+  {
+    path: "/Navbar",
+    name: "Navbar",
+    component: Navbar,
+  },
+  {
+    path: "/Gallery",
+    name: "Gallery",
+    component: Gallery,
+  },
+  {
+    path: "/Passwordupdate",
+    name: "Passwordupdate",
+    component: Passwordupdate,
+  },
+  {
+    path: "/Main",
+    name: "Main",
+    component: Main,
+  },
+  {
+    path: "/Checksign",
+    name: "Checksign",
+    component: Checksign,
+  },
+  {
+    path: "/Update",
+    name: "Update",
+    component: Update,
+  },
+  {
+    path: "/Recover",
+    name: "Recover",
+    component: Recover,
+  },
+  {
+    path: "/Login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/Signup",
+    name: "Signup",
+    component: Signup,
+  },
+  {
+    path: "/Forget",
+    name: "Forget",
+    component: Forget,
+  },
+
   {
     path: "/about",
     name: "About",
