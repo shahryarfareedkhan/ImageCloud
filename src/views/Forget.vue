@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="backgruond ">
+    <div class="imgb ">
       
       <v-main class="d-flex justify-center align-center mt-23 mb-9">
         <v-col cols="10" md="6" sm="6" lg="4" class="mx-auto">
@@ -24,7 +24,7 @@
               </v-card-text>
               
               <v-card-actions class="justify-center">
-                <v-btn :loading="loading" type="submit" color="success">
+                <v-btn  type="submit" color="success">
                   <span class="white--text px-8">Submit Email</span>
                 </v-btn>
               </v-card-actions>
@@ -37,9 +37,7 @@
           </v-card>
         </v-col>
       </v-main>
-      <v-snackbar top color="red" v-model="snackbar">
-        Please Enter Correct Email or Password
-      </v-snackbar>
+     
     </div>
   </v-app>
 </template>
@@ -52,24 +50,31 @@ export default {
 
   data: () => ({
     emailRule: emailRule,
-    loading: false,
-    snackbar: false,
+    // loading: false,
+    // snackbar: false,
     user: {
       email: "",
-      password: "",
     },
   }),
   methods: {
     submitHandler() {
       if (this.$refs.form.validate()) {
+        if(this.getTesting!=""){
+          //console.log("empty");
+          // this.$refs.email.focus();
+        }
+        this.$store.dispatch("ForgetData",this.user);
         this.loading = true;
-        setTimeout(() => {
-          this.loading = false;
-          this.snackbar = true;
-        }, 3000);
-      }
+       
+      }     
     },
   },
 };
 </script>
-<style></style>
+<style>
+.imgb{
+  background-image: url("https://images.pexels.com/photos/6044927/pexels-photo-6044927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  height: 100%;
+}
+</style>

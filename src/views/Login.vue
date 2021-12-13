@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="backgruond ">
+    <div class="img1">
       <!-- <v-row justify="center" class="mt-1">
      <img src="https://cdn.mos.cms.futurecdn.net/kPTwCmCKYJUwGbDbRZr9MX.png" alt="" width="200px" height="130px">
 
@@ -54,9 +54,9 @@
           </v-card>
         </v-col>
       </v-main>
-      <v-snackbar top color="red" v-model="snackbar">
+      <!-- <v-snackbar top color="red" v-model="snackbar">
         Please Enter Correct Email or Password
-      </v-snackbar>
+      </v-snackbar> -->
     </div>
   </v-app>
 </template>
@@ -81,14 +81,21 @@ export default {
   methods: {
     submitHandler() {
       if (this.$refs.form.validate()) {
+                    this.$store.dispatch("loginUser",this.user);
+                    console.log(this.user)
+
         this.loading = true;
-        setTimeout(() => {
-          this.loading = false;
-          this.snackbar = true;
-        }, 3000);
+
+       
       }
     },
   },
 };
 </script>
-<style></style>
+<style>
+.img1{
+  background-image: url("https://images.pexels.com/photos/6044927/pexels-photo-6044927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  height: 100%;
+}
+</style>

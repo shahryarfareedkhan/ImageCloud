@@ -6,10 +6,10 @@
     >
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Snap Share</v-toolbar-title>
+      <v-toolbar-title>Snap Cloud</v-toolbar-title>
       <v-spacer></v-spacer>
        <v-btn class=" mx-2" text to="/Update">Update Profile</v-btn>
-        <v-btn class="mx-2" text to="/Gallery">Gallery</v-btn>
+        <v-btn class="mx-2" text to="/Gallary">Gallery</v-btn>
 
         <v-btn class="" text @click="signupbt()">logout</v-btn>
 
@@ -40,13 +40,13 @@
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="" to="">Account</v-list-item-title>
+            <v-list-item-title  ><router-link  class="text-decoration-none" to="/Profile"> User Profile</router-link></v-list-item-title>
           </v-list-item>
           <v-list-item>
             <v-list-item-icon>
               <v-icon>mdi-key</v-icon>
             </v-list-item-icon>
-            <v-list-item-title ><router-link  class="text-decoration-none" to="/Main"> Update Password</router-link></v-list-item-title>
+            <v-list-item-title ><router-link  class="text-decoration-none" to="/Passwordupdate"> Update Password</router-link></v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>

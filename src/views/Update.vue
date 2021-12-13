@@ -1,25 +1,36 @@
 <template>
-  <div>
-    <Navbar/>
+  <div class="imgb">
+    <Navbar />
 
     <v-row justify="center" class="main mt-10">
       <v-col class="mt-0" cols="10" sm="8" md="6" lg="4">
-        <v-form ref="form">
-          <v-card ref="form">
+        <v-form @submit.prevent="submitHandler" ref="form">
+          <v-card >
             <v-card-text>
               <h1 class="text-center black--text">Update Profile</h1>
 
+              <v-avatar size="150" class="mb-10 mt-10">
+                <img
+                  :src="
+                    currentUser.user_profile_image_path +
+                    '/' +
+                    currentUser.profile_image
+                  "
+                  alt="upload"
+                />
+              </v-avatar>
+
               <v-text-field
-                ref="userName"
-                v-model="userData.username"
+                ref="name"
+                v-model="userData.name"
                 :rules="UsernameRule"
                 :error-messages="errorMessages"
-                label="Username"
+                label="name"
                 placeholder="John Doe"
                 required
               ></v-text-field>
 
-              <v-text-field
+              <!-- <v-text-field
                 ref="email"
                 v-model="userData.email"
                 :rules="emailRule"
@@ -27,9 +38,9 @@
                 label="Email"
                 placeholder="xyz@gmail.com"
                 required
-              ></v-text-field>
+              ></v-text-field> -->
 
-              <v-text-field
+              <!-- <v-text-field
                 ref="password"
                 v-model="userData.password"
                 :type="'Password'"
@@ -38,7 +49,7 @@
                 label="Password"
                 placeholder="***"
                 required
-              ></v-text-field>
+              ></v-text-field> -->
 
               <v-text-field
                 ref="age"
@@ -50,14 +61,11 @@
                 placeholder="18"
                 required
               ></v-text-field>
-               <!-- <v-list-item-avatar
-        tile
-        size="80"
-        color="grey"
-      ></v-list-item-avatar> -->
+
+              <!-- v-model="userData.profile_image" -->
               <v-file-input
-                v-model="userData.image"
-                :rules="imageRule"
+                v-on:change="storeImg"
+                
                 label="File input"
                 filled
                 shaped
@@ -66,11 +74,11 @@
             </v-card-text>
             <!-- <v-divider></v-divider> -->
             <v-card-actions>
-              <v-btn block color="success" class="mx-auto"  > Update Profile </v-btn>
+              <v-btn block type="submit" color="success" class="mx-auto">
+                Update Profile
+              </v-btn>
               <v-spacer></v-spacer>
-           
-            </v-card-actions>
-            </v-card
+            </v-card-actions> </v-card
           ><br />
         </v-form>
       </v-col>
@@ -78,13 +86,13 @@
   </div>
 </template>
 <script>
-import Navbar from "../views/Navbar.vue"
+import Navbar from "../views/Navbar.vue";
 import {
   UsernameRule,
-  emailRule,
-  firstnameRule,
-  lastnameRule,
-  passwordRule,
+  // emailRule,
+  // firstnameRule,
+  // lastnameRule,
+  // passwordRule,
   numberRule,
   imageRule,
 } from "./validation/validation.js";
@@ -94,31 +102,73 @@ export default {
     Navbar,
   },
   data: () => ({
+    currentUser: "",
     userData: {
-      email: "",
-      username: "",
-      password: "",
+      name: "",
       age: "",
-      image: "",
+      profile_image: "",
     },
+    // userData: {
+    //   email: "",
+    //   name: "",
+    //   password: "",
+    //   age: "",
+    //   profile_image: "",
+    // },
     errorMessages: "",
     formHasErrors: false,
-    emailRule: emailRule,
+    // emailRule: emailRule,
     UsernameRule: UsernameRule,
-    firstnameRule: firstnameRule,
-    lastnameRule: lastnameRule,
-    passwordRule: passwordRule,
+    // firstnameRule: firstnameRule,
+    // lastnameRule: lastnameRule,
+    // passwordRule: passwordRule,
     numberRule: numberRule,
     imageRule: imageRule,
   }),
+  methods: {
+    
+    storeImg(event) {
+      let vm = this;
+      const reader = new FileReader();
+      reader.addEventListener(
+        "load",
+        function () {
+          vm.userData.profile_image = reader.result;
+        },
+        false
+      );
+      reader.readAsDataURL(event);
+      
+    },
+    submitHandler() {
+      if (this.$refs.form.validate()) {
+        this.$store.dispatch("Updateprofile", this.userData);
+      alert("hello");
+
+        // this.loading = true;
+      }
+    }
+  },
 
   watch: {
     name() {
       this.errorMessages = "";
     },
   },
-
-  
+  mounted() {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(this.currentUser);
+    this.userData.name = this.currentUser.name;
+    this.userData.age = this.currentUser.age;
+    this.userData.profile_image = this.currentUser.profile_image;
+    console.log(this.userData);
+  },
 };
 </script>
-<style></style>
+<style>
+.imgb {
+  background-image: url("https://images.pexels.com/photos/6044927/pexels-photo-6044927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  height: 100%;
+}
+</style>

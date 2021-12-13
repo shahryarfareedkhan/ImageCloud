@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="backgruond ">
+    <div class="imgb ">
       <!-- <v-row justify="center" class="mt-1">
      <img src="https://cdn.mos.cms.futurecdn.net/kPTwCmCKYJUwGbDbRZr9MX.png" alt="" width="200px" height="130px">
 
@@ -87,4 +87,10 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+.imgb{
+  background-image: url("https://images.pexels.com/photos/6044927/pexels-photo-6044927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  height: 100%;
+}
+</style>

@@ -11,7 +11,9 @@ import Navbar from "../views/Navbar.vue";
 import Checksign from "../views/Checksign.vue";
 import Gallery from "../views/Gallery.vue";
 import Passwordupdate from "../views/Passwordupdate.vue";
-
+import demo from "../views/demo.vue";
+import Profile from "../views/Profile.vue";
+import Gallary from "../views/Gallary.vue";
 
 Vue.use(VueRouter);
 
@@ -25,6 +27,21 @@ const routes = [
     path: "/Navbar",
     name: "Navbar",
     component: Navbar,
+  },
+  {
+    path: "/Gallary",
+    name: "Gallary",
+    component: Gallary,
+  },
+  {
+    path: "/demo",
+    name: "demo",
+    component: demo,
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: Profile,
   },
   {
     path: "/Gallery",

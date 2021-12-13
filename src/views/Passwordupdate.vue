@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="backgruond ">
+    <div class="imgb ">
         <Navbar/>
      
       <v-main class="d-flex justify-center align-center mt-10 mb-9">
@@ -14,11 +14,11 @@
               <v-card-text>
                 
                 <v-text-field
-                  v-model="user.Oldpassword"
+                  v-model="user.old_password"
                   :rules="passwordRule"
                   :type="OldpasswordShow ? 'text' : 'password'"
                   label="OldPassword"
-                  placeholder="OldPassword"
+                  placeholder="Old Password"
                   prepend-inner-icon="mdi-key"
                   :append-icon="OldpasswordShow ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="OldpasswordShow = !OldpasswordShow"
@@ -28,15 +28,15 @@
                   v-model="user.password"
                   :rules="passwordRule"
                   :type="passwordShow ? 'text' : 'password'"
-                  label="Password"
-                  placeholder="Password"
+                  label="New Password"
+                  placeholder="New Password"
                   prepend-inner-icon="mdi-key"
                   :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="passwordShow = !passwordShow"
                   required
                 />
                 <v-text-field
-                  v-model="user.Confirmpassword"
+                  v-model="user.password_confirmation"
                   :rules="passwordRule"
                   :type="ConfirmpasswordShow ? 'text' : 'password'"
                   label="ConfirmPassword"
@@ -84,21 +84,29 @@ export default {
     ConfirmpasswordShow: false,
     user: {
       password: "",
-      Confirmpassword:"",
-      Oldpassword:"",
+      password_confirmation:"",
+      old_password:"",
     },
   }),
   methods: {
     submitHandler() {
       if (this.$refs.form.validate()) {
-        this.loading = true;
-        setTimeout(() => {
-          this.loading = false;
-          this.snackbar = true;
-        }, 3000);
+                this.$store.dispatch("Updatepassord", this.user);
+
+        // this.loading = true;
+        // setTimeout(() => {
+        //   this.loading = false;
+        //   this.snackbar = true;
+        // }, 3000);
       }
     },
   },
 };
 </script>
-<style></style>
+<style>
+.imgb{
+  background-image: url("https://images.pexels.com/photos/6044927/pexels-photo-6044927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  height: 100%;
+}
+</style>
